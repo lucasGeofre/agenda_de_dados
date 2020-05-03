@@ -72,21 +72,6 @@ def criar_arquivo(nome):
         print(f'{nome} foi criado')
 
 
-def adicionar_compromisso(arq):
-    try:
-        a = open(arq)
-        compromisso = criar_compromisso()
-    except:
-        print('huve um erro na abertura do arquivo')
-    else:
-        try:
-            a.write(f'{compromisso}')
-        except:
-            print('houve um erro!')
-        else:
-            print('o compromisso foi criado')
-
-
 def ler_arquivo(nome):
     try:
         a = open(nome, 'rt')
@@ -97,9 +82,11 @@ def ler_arquivo(nome):
         for linha in a:
             p = linha.replace(';', '\n')
             print(p)
-
     finally:
         a.close()
+
+
+def alterar_arq(nome):
 
 
 def arquivo_existe(nome):
