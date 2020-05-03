@@ -87,6 +87,7 @@ def ler_arquivo(nome):
 
 
 def alterar_arq(nome):
+    pass
 
 
 def arquivo_existe(nome):
