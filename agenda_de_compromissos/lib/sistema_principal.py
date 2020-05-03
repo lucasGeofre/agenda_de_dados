@@ -11,4 +11,5 @@ while True:
     if resposta == 1:
         cabeçalho('Adicionar compromisso')
         criar_compromisso(arq)
-
+    if resposta == 2:
+        cabeçalho('Alterar compromisso')
