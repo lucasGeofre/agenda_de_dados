@@ -1,3 +1,5 @@
+from time import sleep
+
 from agenda_de_compromissos.lib.interface import *
 
 
@@ -62,6 +64,72 @@ def criar_compromisso(arq):
             print(cabeçalho('Compromisso adicionado!'))
 
 
+def alterar_compromisso(nome):
+    ler_arquivo(nome)
+    while True:
+        try:
+            a = open(nome, 'rt')
+        except:
+            print('erro ao ler arquivo!')
+        else:
+            q = int(leiaint('qual numero do arquivo vc deseja alterar:'))
+            c = 0
+            for m in a:
+                c += 1
+            if c < q or q <= 0:
+                print('valor inválido\n')
+                sleep(1)
+            else:
+                a.close()
+                with open(nome, 'r') as f:
+                    arquivo = f.readlines()
+                with open(nome, 'w') as f:
+                    for i in arquivo:
+                        if arquivo.index(i) == (q - 1):
+                            try:
+                                l = str(input('compromisso:'))
+                                n = leia_data()
+                                m = leia_hora()
+                                o = str(input('descrição:'))
+
+                                f.write(f'compromisso: {l};data: {n};Hora {m};Descrição: {o}\n')
+                            except:
+                                print('Err0 ao alterar compromisso!!!')
+                            else:
+                                print(cabeçalho('Compromisso alterado!'))
+                        else:
+                            f.write(i)
+                    return False
+
+
+def apagar_compromisso(nome):
+    ler_arquivo(nome)
+    while True:
+        try:
+            a = open(nome, 'rt')
+        except:
+            print('erro ao ler arquivo!')
+        else:
+            n = int(leiaint('qual numero do arquivo vc deseja apagar:'))
+            c = 0
+            for m in a:
+                c += 1
+            if c < n or n <= 0:
+                print('valor inválido\n')
+                sleep(1)
+            else:
+                a.close()
+                with open(nome, 'r') as f:
+                    arquivo = f.readlines()
+                with open(nome, 'w') as f:
+                    for i in arquivo:
+                        if arquivo.index(i) == (n - 1):
+                            f.write('')
+                        else:
+                            f.write(i)
+                    return False
+
+
 def criar_arquivo(nome):
     try:
         a = open(nome, 'wt+')
@@ -73,6 +141,7 @@ def criar_arquivo(nome):
 
 
 def ler_arquivo(nome):
+    n = 1
     try:
         a = open(nome, 'rt')
     except:
@@ -81,13 +150,11 @@ def ler_arquivo(nome):
         cabeçalho('Compromissos')
         for linha in a:
             p = linha.replace(';', '\n')
-            print(p)
+            print(f'{n}.{p}')
+            n += 1
+
     finally:
         a.close()
-
-
-def alterar_arq(nome):
-    pass
 
 
 def arquivo_existe(nome):

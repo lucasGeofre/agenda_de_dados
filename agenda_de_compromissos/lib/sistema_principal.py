@@ -13,3 +13,13 @@ while True:
         criar_compromisso(arq)
     if resposta == 2:
         cabeçalho('Alterar compromisso')
+        alterar_compromisso(arq)
+    if resposta == 3:
+        cabeçalho('Apagar comprisso:')
+        apagar_compromisso(arq)
+    if resposta == 4:
+        ler_arquivo(arq)
+    if resposta == 5:
+        break
+
+
